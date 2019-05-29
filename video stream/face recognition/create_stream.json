@@ -1,0 +1,22 @@
+{
+   "Input": { 
+      "KinesisVideoStream": { 
+         "Arn": "arn:aws:kinesisvideo:us-west-2:430229884637:stream/face_rekogonition/1553724374153"
+      }
+   },
+   "Name": "face_rekognition",
+   "Output": { 
+      "KinesisDataStream": { 
+         "Arn": "arn:aws:kinesis:us-west-2:430229884637:stream/face_rekogniztion_result"
+      }
+   },
+    "Settings": {
+        "FaceSearch": {
+            "CollectionId": "face_rekognition",
+            "FaceMatchThreshold": 0.5
+        }
+    },
+
+   "RoleArn": "arn:aws:iam::430229884637:role/face_rekognition"
+}
+

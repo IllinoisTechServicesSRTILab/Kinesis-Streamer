@@ -25,7 +25,23 @@ if __name__ == "__main__":
         record_response = kinesis_client.get_records(ShardIterator=record_response['NextShardIterator'],
                                                       Limit=2)
 
-        print(record_response)
+        if len(record_response["Records"]) > 0:
+
+            for rec in record_response["Records"]:
+
+
+                data_str = rec["Data"]
+                data_str = ''.join([chr(p) for p in data_str])
+
+                similarities = data_str.split('"Similarity":')
+                similarities.pop(0)
+
+                for s in similarities:
+                    similarity = float(s.split(",")[0])
+                    face_name = data_str.split('"ExternalImageId":')[1].split("\"")[1]
+
+                    if similarity > 70:
+                        print(face_name)
 
         # wait for 5 seconds
         time.sleep(5)
